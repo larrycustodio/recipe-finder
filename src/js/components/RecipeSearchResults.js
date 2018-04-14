@@ -20,10 +20,15 @@ const RecipeViewWrapper = styled.div`
 `;
 
 const RecipeImageContainer = styled.div`
-    background: linear-gradient(to bottom,rgb(37, 37, 37),rgb(110, 132, 93));    width: 17.5em;
-    height: 17.5em;
+    background: linear-gradient(to bottom,rgb(37, 37, 37),rgb(110, 132, 93));
+    width: 247px;
+    height: 247px;
     max-width: 100%;
     margin: 0 auto 1em;
+    @media (min-width: 768px){
+        width: 365px;
+        height: 365px;    
+    }
     img {
         width: 100%;
     }

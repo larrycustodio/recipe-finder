@@ -13,7 +13,7 @@ class App extends Component {
     super(props);
     this.initialState = {
       timeOfDay: '',
-      categories: ['beef', 'chicken', 'lamb', 'pasta', 'pork', 'seafood', 'vegetarian', 'vegan', 'miscellaneous'],
+      categories: ['beef', 'chicken', 'pasta', 'pork', 'seafood', 'vegetarian', 'vegan', 'random'],
       isSearched: false,
       isSearchError: null,
       isRecipeSelected: false,

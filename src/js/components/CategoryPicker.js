@@ -1,27 +1,40 @@
 import React from 'react';
 import styled from 'styled-components';
+import * as icons  from '../icons';
+
+console.log();
 
 const Wrapper = styled.div`
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
+    svg {
+        flex: 1 0 100%;
+    }
 `;
 
 const Button = styled.div`
-    display: flex;
-    justify-content: center;
     align-items: flex-end;
-    border: 1px solid rgb(154, 108, 62);
     border-radius: 5px;
     color: rgb(154, 108, 62);
+    cursor: pointer;
+    display: flex;
     flex: 1 0 50%;
+    flex-flow: row wrap;
     font-size: 0.85em;
-    height: 15.5vh;
-    max-width: 46.19%;
+    height: 14vh;
+    justify-content: center;
     margin: 1.5%;
+    max-width: 14vh;
     text-transform: uppercase;
     text-align: center;
-    span {
+    svg {
+        flex: 1 0 100%;
+        filter: sepia(140%);
+    }
+    div {
+        color: rgb(183, 161, 120);
+        font-size: 1em;
         padding: 0.5em 0;
     }
     @media(min-width: 768px){
@@ -42,14 +55,17 @@ const CategoryPicker = props => {
         (
             <Wrapper>
                 {
-                    props.choices.map(choice => (
+                    props.choices.map(choice => {
+                        const icon = icons[choice]? icons[choice]() : '';
+                        return (
                         <Button
                             key={choice.toLowerCase()}
                             data-category={choice}
                             onClick={props.categoryClick}>
-                            <span>{choice}</span>
+                            { icon }
+                            <div>{choice}</div>
                         </Button>
-                    ))
+                    )})
                 }
             </Wrapper>
         )
