@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
+import { Swipeable } from 'react-touch';
 
 const RecipeViewWrapper = styled.div`
     p {
@@ -52,7 +53,7 @@ const red = {
 }
 
 const green = {
-    main: 'rgb(85, 214, 113)' 
+    main: 'rgb(85, 214, 113)'
 }
 
 const RecipeView = props => {
@@ -63,7 +64,11 @@ const RecipeView = props => {
             <p>How about...</p>
             <h1>{strMeal}</h1>
             <RecipeImageContainer>
-                <img src={strMealThumb} />
+                <Swipeable
+                    onSwipeLeft={props.deny}
+                    onSwipeRight={props.accept}>
+                    <img src={strMealThumb} />
+                </Swipeable>
             </RecipeImageContainer>
             <RecipePicker>
                 <ThemeProvider theme={red}>
@@ -74,6 +79,14 @@ const RecipeView = props => {
                 </ThemeProvider>
             </RecipePicker>
         </RecipeViewWrapper>
+    );
+};
+
+const RecipeInstructions = props => {
+    return (
+        <div>
+            Just follow these steps!
+        </div>
     );
 };
 
@@ -91,9 +104,8 @@ const RecipeSearchResults = props => {
                 accept={props.onAccept}
                 recipe={props.recipes[props.activeResult]} />
             :
-            (
-                <div>Finding {props.selectedCategory} recipes...</div>
-            ) :
+            <div>Finding {props.selectedCategory} recipes...</div>
+        :
         null;
 };
 

@@ -6,6 +6,7 @@ import Selector from './components/Selector';
 import Form from './components/Form';
 import CategoryPicker from './components/CategoryPicker';
 import RecipeSearchResults from './components/RecipeSearchResults';
+import RecipeInstructions from './components/RecipeInstructions';
 
 class App extends Component {
   constructor(props) {
@@ -169,6 +170,10 @@ class App extends Component {
           activeResult={this.state.activeResult}
           onDeny={this.denyRecipeHandler}
           onAccept={this.acceptRecipeHandler}
+        />
+        <RecipeInstructions
+          isRecipeSelected={this.state.isRecipeSelected}
+          instructions={this.state.recipe}
         />
         <CategoryPicker
           isSelected={this.state.isSearched}
