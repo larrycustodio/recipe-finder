@@ -15,23 +15,29 @@ class App extends Component {
       categories: ['beef', 'chicken', 'lamb', 'pasta', 'pork', 'seafood', 'vegetarian', 'vegan', 'miscellaneous'],
       isSearched: false,
       isSearchError: null,
+      isRecipeSelected: false,
       results: [],
+      recipe: {},
       activeResult: 0,
       selectedCategory: ''
     };
     this.state = this.initialState;
 
     this.resetState = this.resetState.bind(this);
+    this.setTimeOfDay = this.setTimeOfDay.bind(this);
     this.searchStringChangeHandler = this.searchStringChangeHandler.bind(this);
     this.submitHandler = this.submitHandler.bind(this);
     this.searchRecipes = this.searchRecipes.bind(this);
+    this.getRecipeInstructions = this.getRecipeInstructions.bind(this);
     this.categoryClickHandler = this.categoryClickHandler.bind(this);
-    this.setTimeOfDay = this.setTimeOfDay.bind(this);
+    this.denyRecipeHandler = this.denyRecipeHandler.bind(this);
+    this.acceptRecipeHandler = this.acceptRecipeHandler.bind(this);
+
   }
   componentDidMount() {
     this.setTimeOfDay();
   }
-  resetState(){
+  resetState() {
     this.setState({
       ...this.initialState
     });
@@ -64,7 +70,8 @@ class App extends Component {
     window.setTimeout(this.searchRecipes, 1000);
 
   }
-  searchRecipes(){
+  // Async search recipes 
+  searchRecipes() {
     const category = this.state.selectedCategory;
     fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`)
       .then(response => response.json())
@@ -95,6 +102,52 @@ class App extends Component {
         })
       })
   };
+  // Async get recipe instructions
+  getRecipeInstructions() {
+    const { activeResult, results } = this.state;
+    const { idMeal } = results[activeResult];
+    // Toggle recipe selected to 
+    // render recipe instructions view
+    this.setState({
+      ...this.state,
+      isRecipeSelected: true
+    });
+
+    if (!!idMeal) {
+      const getRecipeURL = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${idMeal}`;
+      fetch(getRecipeURL)
+        .then(response => response.json())
+        .then(data => {
+          const { meals } = data;
+          this.setState({
+            ...this.state,
+            recipe: meals[0]
+          });
+        })
+        .catch(err => {
+          console.log('error getting recipe instructions', err.message);
+        });
+    }
+  }
+
+  // Decision handlers
+  // Swipe left/deny recipe in view
+  denyRecipeHandler() {
+    const { results, activeResult } = this.state;
+    if (activeResult < results.length - 1) {
+      this.setState({
+        ...this.state,
+        activeResult: this.state.activeResult + 1
+      })
+    } else {
+      console.log('limit reached!');
+    }
+  }
+  // Swipe right/accept recipe in view
+  acceptRecipeHandler() {
+    this.getRecipeInstructions();
+  }
+
   // Form submission handler
   submitHandler(e) {
     e.preventDefault();
@@ -103,19 +156,19 @@ class App extends Component {
     return (
       <Wrapper>
         <Header timeOfDay={this.state.timeOfDay} />
-        <Selector 
+        <Selector
           isSelected={this.state.isSearched}
           selectedCategory={this.state.selectedCategory}
           reset={this.resetState}
-          />
+        />
         <RecipeSearchResults
-          isSelected={this.state.isSearched}
+          isCategorySelected={this.state.isSearched}
           selectedCategory={this.state.selectedCategory}
           recipes={this.state.results}
           isError={this.state.isSearchError}
           activeResult={this.state.activeResult}
-          // onAccept={}
-          // onDeny={}
+          onDeny={this.denyRecipeHandler}
+          onAccept={this.acceptRecipeHandler}
         />
         <CategoryPicker
           isSelected={this.state.isSearched}

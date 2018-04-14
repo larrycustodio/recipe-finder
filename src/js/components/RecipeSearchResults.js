@@ -22,14 +22,27 @@ const RecipeImageContainer = styled.div`
     background: linear-gradient(to bottom,rgb(37, 37, 37),rgb(110, 132, 93));    width: 17.5em;
     height: 17.5em;
     max-width: 100%;
-    margin: 0 auto;
+    margin: 0 auto 1em;
     img {
         width: 100%;
     }
-`
+`;
+
+const RecipePicker = styled.div`
+    display: flex;
+    justify-content: space-around;
+`;
+
+const Button = styled.div`
+    border: 2px solid rgb(71,71,71);
+    color: rgb(71,71,71);
+    padding: 0.5em;
+    text-transform: uppercase;
+`;
 
 const RecipeView = props => {
     const { strMeal, strMealThumb } = props.recipe;
+
     return (
         <RecipeViewWrapper>
             <p>How about...</p>
@@ -37,6 +50,10 @@ const RecipeView = props => {
             <RecipeImageContainer>
                 <img src={strMealThumb} />
             </RecipeImageContainer>
+            <RecipePicker>
+                <Button onClick={props.deny}>Nay</Button>
+                <Button onClick={props.accept}>Yay</Button>
+            </RecipePicker>
         </RecipeViewWrapper>
     );
 };
@@ -48,9 +65,12 @@ const ErrorMessage = props => {
 };
 
 const RecipeSearchResults = props => {
-    return props.isSelected ?
+    return props.isCategorySelected ?
         props.recipes.length ?
-            <RecipeView recipe={props.recipes[props.activeResult]} />
+            <RecipeView
+            deny={props.onDeny}
+            accept={props.onAccept} 
+            recipe={props.recipes[props.activeResult]} />
             :
             (
                 <div>Finding {props.selectedCategory} recipes...</div>
