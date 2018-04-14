@@ -8,7 +8,8 @@ injectGlobal`
     width: 100%;
   }
   #app {
-      background-color: rgb(25,25,25);
+      background-color: rgb(46, 46, 46);
+      background-image: url("https://www.transparenttextures.com/patterns/black-paper.png");
       height: 100vh;
       overflow-y: scroll;
   }

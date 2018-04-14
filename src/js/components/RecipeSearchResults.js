@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 
 const RecipeViewWrapper = styled.div`
     p {
@@ -34,11 +34,26 @@ const RecipePicker = styled.div`
 `;
 
 const Button = styled.div`
-    border: 2px solid rgb(71,71,71);
-    color: rgb(71,71,71);
     padding: 0.5em;
     text-transform: uppercase;
+
+    border: 2px solid ${props => props.theme.main};
+    color:  ${props => props.theme.main};
 `;
+
+Button.defaultProps = {
+    theme: {
+        main: 'rgb(126,126,126)'
+    }
+};
+
+const red = {
+    main: 'rgb(208, 44, 44)'
+}
+
+const green = {
+    main: 'rgb(85, 214, 113)' 
+}
 
 const RecipeView = props => {
     const { strMeal, strMealThumb } = props.recipe;
@@ -51,8 +66,12 @@ const RecipeView = props => {
                 <img src={strMealThumb} />
             </RecipeImageContainer>
             <RecipePicker>
-                <Button onClick={props.deny}>Nay</Button>
-                <Button onClick={props.accept}>Yay</Button>
+                <ThemeProvider theme={red}>
+                    <Button onClick={props.deny}>Nay</Button>
+                </ThemeProvider>
+                <ThemeProvider theme={green}>
+                    <Button onClick={props.accept}>Yay</Button>
+                </ThemeProvider>
             </RecipePicker>
         </RecipeViewWrapper>
     );
@@ -68,9 +87,9 @@ const RecipeSearchResults = props => {
     return props.isCategorySelected ?
         props.recipes.length ?
             <RecipeView
-            deny={props.onDeny}
-            accept={props.onAccept} 
-            recipe={props.recipes[props.activeResult]} />
+                deny={props.onDeny}
+                accept={props.onAccept}
+                recipe={props.recipes[props.activeResult]} />
             :
             (
                 <div>Finding {props.selectedCategory} recipes...</div>
