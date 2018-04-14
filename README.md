@@ -1,14 +1,15 @@
-# Beer Lister
+# Recipe Lister
 
-A friendly suggestion on what to get for the upcoming happy hour! 
+For the uninspired home cook
 
 ## Development Mode Setup
 
 Make sure to have Node.js, git, and webpack pre-installed to continue.
  
 To install a local copy of the repository, fork or clone to your local drive via terminal:
+
 ```
-git clone https://github.com/larrycustodio/beer-lister <YOUR_REPO_DIRNAME>
+git clone https://github.com/larrycustodio/recipe-finder.git <YOUR_REPO_DIRNAME>
 ```
 
 Switch to the active directory, then install all npm module dependencies:
@@ -36,6 +37,5 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## References & Acknowledgments
 
-* API powered by Brewery DB [Documentation](http://www.brewerydb.com/developers/docs)
-* Backend featured powered by Firebase [Documentation](https://firebase.google.com/docs/web/setup?authuser=0)
+* API powered by The Meal DB [Documentation](https://www.themealdb.com/)
 * A few happy hours for the spur of the moment ideas...
