@@ -20,31 +20,31 @@ const RecipeViewWrapper = styled.div`
 `;
 
 const RecipeImageContainer = styled.div`
-    background: linear-gradient(to bottom,rgb(37, 37, 37),rgb(110, 132, 93));
+    background: rgb(83, 169, 120);
     width: 247px;
     height: 247px;
     max-width: 100%;
-    margin: 0 auto 1em;
+    margin: 0 0.25em 1em;
+    img {
+        height: 100%;
+    }
     @media (min-width: 768px){
         width: 365px;
         height: 365px;    
     }
-    img {
-        width: 100%;
-    }
 `;
 
 const RecipePicker = styled.div`
+    align-items: center;
     display: flex;
     justify-content: space-around;
+    
 `;
 
 const Button = styled.div`
-    padding: 0.5em;
-    text-transform: uppercase;
-
-    border: 2px solid ${props => props.theme.main};
     color:  ${props => props.theme.main};
+    font-size: 4.5em;
+    text-transform: uppercase;
 `;
 
 Button.defaultProps = {
@@ -68,19 +68,19 @@ const RecipeView = props => {
         <RecipeViewWrapper>
             <p>How about...</p>
             <h1>{strMeal}</h1>
-            <RecipeImageContainer>
-                <Swipeable
-                    onSwipeLeft={props.deny}
-                    onSwipeRight={props.accept}>
-                    <img src={strMealThumb} />
-                </Swipeable>
-            </RecipeImageContainer>
             <RecipePicker>
                 <ThemeProvider theme={red}>
-                    <Button onClick={props.deny}>Nay</Button>
+                    <Button onClick={props.deny}>&laquo;</Button>
                 </ThemeProvider>
+                <RecipeImageContainer>
+                    <Swipeable
+                        onSwipeLeft={props.deny}
+                        onSwipeRight={props.accept}>
+                        <img src={strMealThumb} />
+                    </Swipeable>
+                </RecipeImageContainer>
                 <ThemeProvider theme={green}>
-                    <Button onClick={props.accept}>Yay</Button>
+                    <Button onClick={props.accept}>&raquo;</Button>
                 </ThemeProvider>
             </RecipePicker>
         </RecipeViewWrapper>

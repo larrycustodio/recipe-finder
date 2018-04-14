@@ -8,6 +8,118 @@ import CategoryPicker from './components/CategoryPicker';
 import RecipeSearchResults from './components/RecipeSearchResults';
 import RecipeInstructions from './components/RecipeInstructions';
 
+// const testLookup = {
+//   idMeal:
+//   "52940",
+//   strMeal:
+//   "Brown Stew Chicken",
+//   strMealThumb:
+//   "https://www.themealdb.com/images/media/meals/sypxpx1515365095.jpg"  
+// };
+
+// const testRecipe = {
+//   dateModified:
+//     null,
+//   idMeal:
+//     "52885",
+//   strArea:
+//     "British",
+//   strCategory:
+//     "Pork",
+//   strIngredient1:
+//     "Butter",
+//   strIngredient10:
+//     "",
+//   strIngredient11:
+//     "",
+//   strIngredient12:
+//     "",
+//   strIngredient13:
+//     "",
+//   strIngredient14:
+//     "",
+//   strIngredient15:
+//     "",
+//   strIngredient16:
+//     "",
+//   strIngredient17:
+//     "",
+//   strIngredient18:
+//     "",
+//   strIngredient19:
+//     "",
+//   strIngredient2:
+//     "Bacon",
+//   strIngredient20:
+//     "",
+//   strIngredient3:
+//     "Onion",
+//   strIngredient4:
+//     "Garlic Clove",
+//   strIngredient5:
+//     "Brussels Sprouts",
+//   strIngredient6:
+//     "Potatoes",
+//   strIngredient7:
+//     "",
+//   strIngredient8:
+//     "",
+//   strIngredient9:
+//     "",
+//   strInstructions:
+//     "Melt the fat in a non-stick pan, allow it to get nice and hot, then add the bacon. As it begins to brown, add the onion and garlic. Next, add the sliced sprouts or cabbage and let it colour slightly. …",
+//   strMeal:
+//     " Bubble & Squeak",
+//   strMealThumb:
+//  "https://www.themealdb.com/images/media/meals/xusqvw1511638311.jpg",
+//   strMeasure1:
+//     "1 tbs",
+//   strMeasure10:
+//     "",
+//   strMeasure11:
+//     "",
+//   strMeasure12:
+//     "",
+//   strMeasure13:
+//     "",
+//   strMeasure14:
+//     "",
+//   strMeasure15:
+//     "",
+//   strMeasure16:
+//     "",
+//   strMeasure17:
+//     "",
+//   strMeasure18:
+//     "",
+//   strMeasure19:
+//     "",
+//   strMeasure2:
+//     "4",
+//   strMeasure20:
+//     "",
+//   strMeasure3:
+//     "1 finely sliced",
+//   strMeasure4:
+//     "1 chopped",
+//   strMeasure5:
+//     "20",
+//   strMeasure6:
+//     "400g",
+//   strMeasure7:
+//     "",
+//   strMeasure8:
+//     "",
+//   strMeasure9:
+//     "",
+//   strSource:
+//     "https://www.bbcgoodfood.com/recipes/164622/bubble-and-squeak",
+//   strTags:
+//     "SideDish,Speciality",
+//   strYoutube:
+//     "https://www.youtube.com/watch?v=etbJ9ssgsWY"
+// };
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -60,7 +172,8 @@ class App extends Component {
   }
   // Click handler
   categoryClickHandler(e) {
-    let { category } = e.target.dataset
+    e.stopPropagation();
+    let { category } = e.target.dataset;
     if (!category) category = e.target.parentNode.dataset.category;
     // Set state on chosen category 
     this.setState({
