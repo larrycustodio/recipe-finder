@@ -176,13 +176,15 @@ class App extends Component {
     let { category } = e.target.dataset;
     if (!category) category = e.target.parentNode.dataset.category;
     // Set state on chosen category 
-    this.setState({
-      ...this.state,
-      isSearched: true,
-      selectedCategory: category
-    });
-    // Set async request for recipe search
-    window.setTimeout(this.searchRecipes, 1000);
+    if(!!category){
+      this.setState({
+        ...this.state,
+        isSearched: true,
+        selectedCategory: category
+      });
+      // Set async request for recipe search
+      window.setTimeout(this.searchRecipes, 1000);
+    }
   }
   // Async search recipes 
   searchRecipes() {

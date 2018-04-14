@@ -9,7 +9,6 @@ injectGlobal`
   }
   #app {
       background-color: rgb(46, 46, 46);
-      background-image: url("https://www.transparenttextures.com/patterns/black-paper.png");
       height: 100vh;
       overflow-y: scroll;
   }
@@ -40,56 +39,6 @@ export const Wrapper = styled.main`
     font-family: 'Lato', 'Helvetica Neue', sans-serif;
     height: 100vh;
     padding: 2em 4em;
-`;
-
-/*
- * Site Header
- */
-export const Title = styled.h1`
-    color: ${colors.white};
-    font-size: 1.95em;
-    text-align: center;
-    font-weight: 900;
-    margin: 0;
-    text-transform: uppercase;
-`;
-
-export const SubTitle = styled.h4`
-    color: ${colors.green};
-    font-size: 1.15em;
-    letter-spacing: 4px;
-    margin-bottom: 0.25em;
-    text-align: center;
-    text-transform: uppercase;
-`;
-
-export const Tagline = styled.p`
-    color: ${colors.gray};
-    font-size: 0.85em;
-    position: relative;
-    line-height: 1.5em;
-    margin: 0.55em 0;
-    padding: 0.25em 0;
-    text-transform: uppercase;
-    text-align: center;
-    &:before {
-        content: "";
-        background-color: ${colors.gray};
-        height: 1px;
-        left: 0;
-        position: absolute;
-        top: 0;
-        width: 100%;
-    }
-    &:after {
-        content: "";
-        background-color: ${colors.gray};
-        height: 1px;
-        left: 0;
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-    }
 `;
 
 /*

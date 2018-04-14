@@ -1,6 +1,42 @@
 import React from 'react';
-import styled, { ThemeProvider } from 'styled-components';
+import styled, { keyframes, ThemeProvider } from 'styled-components';
 import { Swipeable } from 'react-touch';
+
+const hintLeft = keyframes`
+    0% {
+        transform: translateX(0%);
+    }
+    25% {
+        transform: translateX(-10%);
+    }
+    50% {
+        transform: translateX(5%);
+    }
+    75% {
+        transform: translateX(-10%);
+    }
+    100% {
+        transform: translateX(0%);
+    }
+`;
+
+const hintRight = keyframes`
+    0% {
+        transform: translateX(0%);
+    }
+    25% {
+        transform: translateX(10%);
+    }
+    50% {
+        transform: translateX(-5%);
+    }
+    75% {
+        transform: translateX(10%);
+    }
+    100% {
+        transform: translateX(0%);
+    }
+`;
 
 const RecipeViewWrapper = styled.div`
     p {
@@ -42,6 +78,7 @@ const RecipePicker = styled.div`
 `;
 
 const Button = styled.div`
+    animation: ${props => props.theme.animate};
     color:  ${props => props.theme.main};
     font-size: 4.5em;
     text-transform: uppercase;
@@ -54,10 +91,12 @@ Button.defaultProps = {
 };
 
 const red = {
+    animate: `${hintLeft} 2s linear infinite`,
     main: 'rgb(208, 44, 44)'
 }
 
 const green = {
+    animate: `${hintRight} 2s linear infinite`,
     main: 'rgb(85, 214, 113)'
 }
 
