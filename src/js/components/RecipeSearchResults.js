@@ -1,11 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const RecipeListWrapper = styled.div`
-
-`;  
-
-const RecipePreview = styled.div`
+const RecipeViewWrapper = styled.div`
     p {
         margin-bottom: 0;
         text-transform: uppercase;
@@ -23,30 +19,25 @@ const RecipePreview = styled.div`
 `;
 
 const RecipeImageContainer = styled.div`
-background: linear-gradient(to bottom,rgb(37, 37, 37),rgb(110, 132, 93));    width: 17.5em;
+    background: linear-gradient(to bottom,rgb(37, 37, 37),rgb(110, 132, 93));    width: 17.5em;
     height: 17.5em;
+    max-width: 100%;
+    margin: 0 auto;
     img {
-        max-width: 100%;
+        width: 100%;
     }
 `
 
-const RecipesList = props => {
+const RecipeView = props => {
+    const { strMeal, strMealThumb } = props.recipe;
     return (
-        <RecipeListWrapper>
-            {
-                props.list.map(listItem => {
-                    return (
-                        <RecipePreview key={listItem.idMeal}>
-                            <p>How about...</p>
-                            <h1>{listItem.strMeal}</h1>
-                            <RecipeImageContainer>
-                                <img src={listItem.strMealThumb} />
-                            </RecipeImageContainer>
-                        </RecipePreview>
-                    );
-                })
-            }
-        </RecipeListWrapper>
+        <RecipeViewWrapper>
+            <p>How about...</p>
+            <h1>{strMeal}</h1>
+            <RecipeImageContainer>
+                <img src={strMealThumb} />
+            </RecipeImageContainer>
+        </RecipeViewWrapper>
     );
 };
 
@@ -59,7 +50,7 @@ const ErrorMessage = props => {
 const RecipeSearchResults = props => {
     return props.isSelected ?
         props.recipes.length ?
-            <RecipesList list={props.recipes} />
+            <RecipeView recipe={props.recipes[props.activeResult]} />
             :
             (
                 <div>Finding {props.selectedCategory} recipes...</div>

@@ -2,20 +2,26 @@ import React, { Component } from 'react';
 
 import { Wrapper } from './styles';
 import Header from './components/Header';
+import Selector from './components/Selector';
 import Form from './components/Form';
 import CategoryPicker from './components/CategoryPicker';
 import RecipeSearchResults from './components/RecipeSearchResults';
+
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
+    this.initialState = {
       timeOfDay: '',
       categories: ['beef', 'chicken', 'lamb', 'pasta', 'pork', 'seafood', 'vegetarian', 'vegan', 'miscellaneous'],
       isSearched: false,
       isSearchError: null,
       results: [],
+      activeResult: 0,
       selectedCategory: ''
-    }
+    };
+    this.state = this.initialState;
+
+    this.resetState = this.resetState.bind(this);
     this.searchStringChangeHandler = this.searchStringChangeHandler.bind(this);
     this.submitHandler = this.submitHandler.bind(this);
     this.searchRecipes = this.searchRecipes.bind(this);
@@ -24,6 +30,11 @@ class App extends Component {
   }
   componentDidMount() {
     this.setTimeOfDay();
+  }
+  resetState(){
+    this.setState({
+      ...this.initialState
+    });
   }
   setTimeOfDay() {
     const currentHour = (new Date()).getHours();
@@ -92,22 +103,30 @@ class App extends Component {
     return (
       <Wrapper>
         <Header timeOfDay={this.state.timeOfDay} />
+        <Selector 
+          isSelected={this.state.isSearched}
+          selectedCategory={this.state.selectedCategory}
+          reset={this.resetState}
+          />
         <RecipeSearchResults
           isSelected={this.state.isSearched}
           selectedCategory={this.state.selectedCategory}
           recipes={this.state.results}
           isError={this.state.isSearchError}
+          activeResult={this.state.activeResult}
+          // onAccept={}
+          // onDeny={}
         />
         <CategoryPicker
           isSelected={this.state.isSearched}
           choices={this.state.categories}
           categoryClick={this.categoryClickHandler} />
-        <Form
+        {/* <Form
           timeOfDay={this.state.timeOfDay}
           onSearchStringChange={this.searchStringChangeHandler}
           submitHandler={this.submitHandler}
           submitted={this.state}
-        />
+        /> */}
       </Wrapper>
     );
   }

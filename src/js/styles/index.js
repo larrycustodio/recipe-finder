@@ -8,6 +8,7 @@ injectGlobal`
     width: 100%;
   }
   #app {
+      background-color: rgb(25,25,25);
       height: 100vh;
       overflow-y: scroll;
   }
@@ -34,9 +35,9 @@ const desktop = '1280px';
  * Components
  */
 export const Wrapper = styled.main`
-    background: ${colors.bg};
     color: ${colors.white};
     font-family: 'Lato', 'Helvetica Neue', sans-serif;
+    height: 100vh;
     padding: 2em 4em;
 `;
 
@@ -96,7 +97,6 @@ export const Tagline = styled.p`
 export const Form = styled.form`
     margin-top: 1.5em;
     label {
-        background-color: ${colors.bg};
         color: ${colors.green};
         display: block;
         font-size: 0.80rem;
@@ -143,41 +143,5 @@ export const FormButton = styled.button`
         outline: none;
         background-color: ${colors.gray};
         color: ${colors.white};
-    }
-`;
-
-/*
- * Category Wrapper
- */
-export const CategoryWrapper = styled.div`
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-`;
-
-export const CategoryButton = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    border: 1px solid ${colors.brown};
-    border-radius: 5px;
-    color: ${colors.brown};
-    flex: 1 0 50%;
-    font-size: 0.85em;
-    height: 15.5vh;
-    max-width: 46.19%;
-    margin: 1.5%;
-    text-transform: uppercase;
-    text-align: center;
-    span {
-        padding: 0.5em 0;
-    }
-    @media(min-width: ${ipad}){
-        flex: 1 0 15%;
-        max-width: 19%;
-    }
-    @media(min-width: ${desktop}){
-        flex: 1 0 16.5%;
-        height: 23vh;
     }
 `;
