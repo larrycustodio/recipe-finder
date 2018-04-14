@@ -59,7 +59,8 @@ class App extends Component {
   }
   // Click handler
   categoryClickHandler(e) {
-    const { category } = e.target.dataset
+    let { category } = e.target.dataset
+    if (!category) category = e.target.parentNode.dataset.category;
     // Set state on chosen category 
     this.setState({
       ...this.state,
@@ -68,7 +69,6 @@ class App extends Component {
     });
     // Set async request for recipe search
     window.setTimeout(this.searchRecipes, 1000);
-
   }
   // Async search recipes 
   searchRecipes() {
