@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Refresh } from '../icons'; 
+import { Refresh } from '../icons';
 
 const Wrapper = styled.div`
     color: rgb(199, 141, 85);
@@ -17,17 +17,17 @@ const Button = styled.div`
 
 
 const Selector = props => {
-    return props.isSelected?
-    (
-        <Wrapper onClick={props.reset}>
-            <i />
-            Showing "{props.selectedCategory}" recipes
-            <Button>
-                { Refresh() }
-            </Button>
-        </Wrapper>
-    ) :
-    null;
+    return props.isCatSelected && !props.isRecipeSelected ?
+        (
+            <Wrapper onClick={props.reset}>
+                <i />
+                Showing "{props.selectedCategory}" recipes
+                <Button>
+                    {Refresh()}
+                </Button>
+            </Wrapper>
+        ) :
+        null;
 };
 
 export default Selector;

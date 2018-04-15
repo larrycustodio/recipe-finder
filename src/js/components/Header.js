@@ -64,12 +64,21 @@ const Tagline = styled.p`
     }
 `;
 
-const Header = props => (
-    <HeaderWrapper>
-        <SubTitle>bon appétit</SubTitle>
-        <Title>Recipe Lister</Title>
-        <Tagline>What's on the menu {props.timeOfDay}?</Tagline>
-    </HeaderWrapper>
-);
+const Header = props => {
+    const { recipe } = props;
+    return (
+        <HeaderWrapper>
+            <SubTitle>
+                {!!recipe.strMeal? 'Recipe Lister' : 'BON APPÉTIT'}
+            </SubTitle>
+            <Title>
+                {!!recipe.strMeal? recipe.strMeal : 'Recipe Lister'}
+            </Title>
+            <Tagline>
+                {!!recipe.strMeal? 'Recipe Instructions' : `What's on the menu ${props.timeOfDay}?`}
+            </Tagline>
+        </HeaderWrapper>
+    )
+};
 
 export default Header;

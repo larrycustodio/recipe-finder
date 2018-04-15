@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { keyframes, ThemeProvider } from 'styled-components';
-import * as icons from '../icons'; 
+import * as icons from '../icons';
 import { Swipeable } from 'react-touch';
 
 const hintLeft = keyframes`
@@ -39,17 +39,31 @@ const hintRight = keyframes`
     }
 `;
 
+const fadeUp = keyframes`
+    0%{
+        transform: translateY(15%);
+        opacity: 0;
+    }
+    100%{
+        transform: translateY(0);
+        opacity: 1;
+    }
+`;
 const RecipeViewWrapper = styled.div`
     p {
-        margin-bottom: 0;
-        text-transform: uppercase;
-        font-size: 0.75em;
-        text-align: center;
+        animation: ${fadeUp} 650ms ease forwards;
         color: rgb(125,240,129);
+        margin-bottom: 0;
+        font-size: 0.75em;
+        opacity: 0;
+        text-transform: uppercase;
+        text-align: center;
     }
     h1 {
+        animation: ${fadeUp} 650ms ease 400ms forwards;
         font-size: 0.85em;
         font-weight: 700;
+        opacity: 0;
         margin-bottom: 0.5em;
         text-transform: uppercase;
         text-align: center;
@@ -57,11 +71,13 @@ const RecipeViewWrapper = styled.div`
 `;
 
 const RecipeImageContainer = styled.div`
+    animation: ${fadeUp} 650ms ease 400ms forwards;
     background: rgb(83, 169, 120);
-    width: 247px;
     height: 247px;
-    max-width: 100%;
     margin: 0 0.25em 1em;
+    opacity: 0;
+    max-width: 100%;
+    width: 247px;
     img {
         height: 100%;
     }
@@ -120,15 +136,23 @@ const Loader = styled.div`
 `
 const RecipeView = props => {
     const { strMeal, strMealThumb } = props.recipe;
-
+    const { isRecipeSelected } = props;
     return (
         <RecipeViewWrapper>
-            <p>How about...</p>
-            <h1>{strMeal}</h1>
+            {
+                !isRecipeSelected ?
+                    (<div>
+                        <p>How about...</p>
+                        <h1>{strMeal}</h1>
+                    </div>) : null
+            }
             <RecipePicker>
-                <ThemeProvider theme={red}>
-                    <Button onClick={props.deny}>&laquo;</Button>
-                </ThemeProvider>
+                {!isRecipeSelected ?
+                    <ThemeProvider theme={red}>
+                        <Button onClick={props.deny}>&laquo;</Button>
+                    </ThemeProvider>
+                    : null
+                }
                 <RecipeImageContainer>
                     <Swipeable
                         onSwipeLeft={props.deny}
@@ -136,19 +160,14 @@ const RecipeView = props => {
                         <img src={strMealThumb} />
                     </Swipeable>
                 </RecipeImageContainer>
-                <ThemeProvider theme={green}>
-                    <Button onClick={props.accept}>&raquo;</Button>
-                </ThemeProvider>
+                {!isRecipeSelected ?
+                    <ThemeProvider theme={green}>
+                        <Button onClick={props.accept}>&raquo;</Button>
+                    </ThemeProvider>
+                    : null
+                }
             </RecipePicker>
         </RecipeViewWrapper>
-    );
-};
-
-const RecipeInstructions = props => {
-    return (
-        <div>
-            Just follow these steps!
-        </div>
     );
 };
 
@@ -162,6 +181,7 @@ const RecipeSearchResults = props => {
     return props.isCategorySelected ?
         props.recipes.length ?
             <RecipeView
+                isRecipeSelected={props.isRecipeSelected}
                 deny={props.onDeny}
                 accept={props.onAccept}
                 recipe={props.recipes[props.activeResult]} />

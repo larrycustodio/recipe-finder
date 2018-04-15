@@ -176,7 +176,7 @@ class App extends Component {
     let { category } = e.target.dataset;
     if (!category) category = e.target.parentNode.dataset.category;
     // Set state on chosen category 
-    if(!!category){
+    if (!!category) {
       this.setState({
         ...this.state,
         isSearched: true,
@@ -271,14 +271,19 @@ class App extends Component {
   render() {
     return (
       <Wrapper>
-        <Header timeOfDay={this.state.timeOfDay} />
+        <Header
+          timeOfDay={this.state.timeOfDay}
+          recipe={this.state.recipe}
+        />
         <Selector
-          isSelected={this.state.isSearched}
+          isCatSelected={this.state.isSearched}
+          isRecipeSelected={!!this.state.recipe.idMeal}
           selectedCategory={this.state.selectedCategory}
           reset={this.resetState}
         />
         <RecipeSearchResults
           isCategorySelected={this.state.isSearched}
+          isRecipeSelected={!!this.state.recipe.idMeal}
           selectedCategory={this.state.selectedCategory}
           recipes={this.state.results}
           isError={this.state.isSearchError}
