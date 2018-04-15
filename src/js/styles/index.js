@@ -91,13 +91,3 @@ injectGlobal`
     transform-origin: center;  
   }
 `;
-
-/*
- * Components
- */
-export const Wrapper = styled.main`
-    color: rgb(255,255,255);
-    font-family: 'Lato', 'Helvetica Neue', sans-serif;
-    height: 100vh;
-    padding: 2em 4em;
-`;

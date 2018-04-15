@@ -30,28 +30,53 @@ const fadeUp = keyframes`
         opacity: 1;
     }
 `;
+
 const Wrapper = styled.div`
     animation: ${fadeUp} 500ms ease forwards;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
     opacity: 1;
 `;
+
+const IngredientsWrapper = styled.div`
+    ul {
+        padding: 0;
+        list-style: none;
+        li {
+            margin-bottom: 0.35em;
+        }
+    }
+    @media(min-width:768px){
+        flex: 1 0;
+    }
+`;
+
 const InstructionsWrapper = styled.div`
     max-height: 35vh;
     overflow-y: scroll; 
-`
+    @media(min-width:768px){
+        flex: 2.5 0;
+    }
+`;
+
 const RecipeInstructions = props => {
     const steps = sanitizeInstructions(props.instructions);
     const { ingredients, measurements } = steps;
     return props.isRecipeSelected && steps.idMeal ?
         <Wrapper>
-            <h2>Ingredients</h2>
-            <ul>{ingredients.map((ingredient, index) => (
-                <li
-                    key={`${ingredient}-${index}`}>
-                    {`${measurements[index]} ${ingredient}`}
-                </li>
-            ))}</ul>
-            <h2>Instructions</h2>
+            <IngredientsWrapper>
+                <h2>You will need</h2>
+                <ul>{ingredients.map((ingredient, index) => (
+                    <li
+                        key={`${ingredient}-${index}`}>
+                        {`${measurements[index]} ${ingredient}`}
+                    </li>
+                ))}
+                </ul>
+            </IngredientsWrapper>
             <InstructionsWrapper>
+                <h2>Instructions</h2>
                 {
                     steps.strInstructions.split('.').map((sentence, i) => (
                         !parseInt(sentence) ?
@@ -62,7 +87,6 @@ const RecipeInstructions = props => {
                     ))
                 }
             </InstructionsWrapper>
-            <a href={steps.strYoutube} target="_blank">Video Link</a>
         </Wrapper>
         :
         null;

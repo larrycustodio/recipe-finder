@@ -44,6 +44,11 @@ const Tagline = styled.p`
     padding: 0.25em 0;
     text-transform: uppercase;
     text-align: center;
+    @media(min-width: 768px){
+        font-size: 1.0em;
+        max-width: 35vw;
+        margin: 0.6em auto;
+    }
     &:before {
         content: "";
         background-color: rgb(137,137,137);

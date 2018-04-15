@@ -49,6 +49,7 @@ const fadeUp = keyframes`
         opacity: 1;
     }
 `;
+
 const RecipeViewWrapper = styled.div`
     p {
         animation: ${fadeUp} 650ms ease forwards;
@@ -70,6 +71,12 @@ const RecipeViewWrapper = styled.div`
     }
 `;
 
+const RecipePicker = styled.div`
+align-items: center;
+display: flex;
+justify-content: space-around;
+`;
+
 const RecipeImageContainer = styled.div`
     animation: ${fadeUp} 650ms ease 400ms forwards;
     background: rgb(83, 169, 120);
@@ -87,16 +94,10 @@ const RecipeImageContainer = styled.div`
     }
 `;
 
-const RecipePicker = styled.div`
-    align-items: center;
-    display: flex;
-    justify-content: space-around;
-    
-`;
-
 const Button = styled.div`
     animation: ${props => props.theme.animate};
     color:  ${props => props.theme.main};
+    cursor: pointer;
     font-size: 4.5em;
     text-transform: uppercase;
 `;

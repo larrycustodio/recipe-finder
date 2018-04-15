@@ -230,7 +230,7 @@ export const loading = () => (
         <title>125 - Boiling Stew (gastronomy, food, cooking, outline)</title>
         <desc>Created with Sketch.</desc>
         <defs></defs>
-        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
             <g id="Icons" transform="translate(-722.000000, -1560.000000)" stroke="rgb(199,141,85)" strokeWidth="2">
                 <g id="Boiling-Stew" transform="translate(723.000000, 1561.000000)">
                     <path d="M53,24 L49,24 L49,28 L53,28 C54.1,28 55,27.1 55,26 C55,24.9 54.1,24 53,24 L53,24 Z" id="Stroke-366"></path>
