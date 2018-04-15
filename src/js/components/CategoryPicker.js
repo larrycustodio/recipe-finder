@@ -2,6 +2,16 @@ import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import * as icons  from '../icons';
 
+const revealUp = keyframes`
+    from {
+        opacity: 0;
+        transform: translateY(10%);
+
+    } to {
+        opacity: 1;
+        transform: translateY(0%);
+    }
+`;
 const Wrapper = styled.div`
     display: flex;
     flex-flow: row wrap;
@@ -12,6 +22,7 @@ const Wrapper = styled.div`
 `;
 
 const Button = styled.div`
+    animation: ${revealUp} 750ms ease 1000ms forwards;
     align-items: flex-end;
     border-radius: 5px;
     color: rgb(154, 108, 62);
@@ -24,6 +35,7 @@ const Button = styled.div`
     justify-content: center;
     margin: 1.5%;
     max-width: 14vh;
+    opacity: 0;
     text-transform: uppercase;
     text-align: center;
     svg {

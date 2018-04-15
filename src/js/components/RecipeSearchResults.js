@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { keyframes, ThemeProvider } from 'styled-components';
+import * as icons from '../icons'; 
 import { Swipeable } from 'react-touch';
 
 const hintLeft = keyframes`
@@ -99,7 +100,24 @@ const green = {
     animate: `${hintRight} 2s linear infinite`,
     main: 'rgb(85, 214, 113)'
 }
-
+const Loader = styled.div`
+    align-items: flex-end;
+    display: flex;
+    flex-flow: row wrap;
+    height: 35vh;
+    justify-content: center;
+    p{
+        flex: 1 0 100%;
+        text-align: center;
+        text-transform: uppercase;
+        color: #ffffff;
+    }
+    svg {
+        flex: 1 0 100%;
+        height: 100px;
+        width: auto;
+    }
+`
 const RecipeView = props => {
     const { strMeal, strMealThumb } = props.recipe;
 
@@ -148,7 +166,10 @@ const RecipeSearchResults = props => {
                 accept={props.onAccept}
                 recipe={props.recipes[props.activeResult]} />
             :
-            <div>Finding {props.selectedCategory} recipes...</div>
+            <Loader>
+                {icons.loading()}
+                <p>Finding {props.selectedCategory} recipes...</p>
+            </Loader>
         :
         null;
 };

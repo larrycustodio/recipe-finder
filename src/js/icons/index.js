@@ -224,3 +224,29 @@ export const random = () => (
         </g>
     </svg>
 );
+
+export const loading = () => (
+    <svg width="57px" height="49px" viewBox="0 0 57 49" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <title>125 - Boiling Stew (gastronomy, food, cooking, outline)</title>
+        <desc>Created with Sketch.</desc>
+        <defs></defs>
+        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+            <g id="Icons" transform="translate(-722.000000, -1560.000000)" stroke="rgb(199,141,85)" strokeWidth="2">
+                <g id="Boiling-Stew" transform="translate(723.000000, 1561.000000)">
+                    <path d="M53,24 L49,24 L49,28 L53,28 C54.1,28 55,27.1 55,26 C55,24.9 54.1,24 53,24 L53,24 Z" id="Stroke-366"></path>
+                    <path d="M2,28 L6,28 L6,24 L2,24 C0.9,24 0,24.9 0,26 C0,27.1 0.9,28 2,28 L2,28 Z" id="Stroke-368"></path>
+                    <path d="M15.625,44.294 C19.594,41.295 18.624,40.969 15.625,37 C11.656,39.999 12.627,40.325 15.625,44.294 L15.625,44.294 Z" id="Stroke-370" strokeLinecap="round"></path>
+                    <path d="M27.626,43.294 C33.771,38.65 32.269,38.146 27.626,32 C21.48,36.643 22.982,37.148 27.626,43.294 L27.626,43.294 Z" id="Stroke-372" strokeLinecap="round"></path>
+                    <path d="M39.375,37 C35.405,39.999 36.376,40.325 39.375,44.294 C43.344,41.295 42.373,40.969 39.375,37 L39.375,37 Z" id="Stroke-374" strokeLinecap="round"></path>
+                    <path className="boil-2" d="M33,2.5 C33,3.881 31.881,5 30.5,5 C29.119,5 28,3.881 28,2.5 C28,1.119 29.119,0 30.5,0 C31.881,0 33,1.119 33,2.5 L33,2.5 Z" id="Stroke-376" strokeLinecap="round"></path>
+                    <path className="boil-3" d="M43,11 C43,11.552 42.552,12 42,12 C41.448,12 41,11.552 41,11 C41,10.448 41.448,10 42,10 C42.552,10 43,10.448 43,11 L43,11 Z" id="Stroke-378" strokeLinecap="round"></path>
+                    <path className="boil-0" d="M15,11 C15,12.657 13.657,14 12,14 C10.343,14 9,12.657 9,11 C9,9.343 10.343,8 12,8 C13.657,8 15,9.343 15,11 L15,11 Z" id="Stroke-380" strokeLinecap="round" strokeDasharray="1.882,2.823"></path>
+                    <path className="pot" d="M50.684,17 L4.316,17 C3.744,17 3.391,17.627 3.685,18.12 L5.316,20.854 C5.764,21.604 6,22.462 6,23.336 L6,35.799 C6,38.671 8.316,41 11.172,41 L13.247,41 C12.606,39.691 13.166,38.858 15.625,37 C17.119,38.977 18.109,40.05 18.236,41 L25.86,41 C22.719,36.931 22.352,35.985 27.625,32 C31.373,36.96 33.068,38.248 30.355,41 L36.996,41 C36.355,39.691 36.915,38.858 39.375,37 C40.868,38.977 41.858,40.05 41.985,41 L43.828,41 C46.684,41 49,38.671 49,35.799 L49,23.336 C49,22.462 49.236,21.604 49.684,20.854 L51.315,18.12 C51.609,17.627 51.256,17 50.684,17 L50.684,17 Z" id="Stroke-384"></path>
+                    <path d="M14,47 L40,47" id="Stroke-386" strokeLinecap="round"></path>
+                    <path d="M19.074,22 L45,22" id="Stroke-388" strokeLinecap="round"></path>
+                    <path d="M10,22 L14.827,22" id="Stroke-390" strokeLinecap="round"></path>
+                </g>
+            </g>
+        </g>
+    </svg>
+);
