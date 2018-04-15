@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
-import * as icons  from '../icons';
+import * as icons from '../icons';
 
 const revealUp = keyframes`
     from {
@@ -66,17 +66,24 @@ const CategoryPicker = props => {
             <Wrapper>
                 {
                     props.choices.map(choice => {
-                        const icon = icons[choice]? icons[choice]() : '';
+                        const icon = icons[choice] ? icons[choice]() : '';
                         return (
-                        <Button
-                            key={choice.toLowerCase()}
-                            data-category={choice}
-                            onClick={props.categoryClick}>
-                            { icon }
-                            <div>{choice}</div>
-                        </Button>
-                    )})
+                            <Button
+                                key={choice.toLowerCase()}
+                                data-category={choice}
+                                onClick={props.categoryClick}>
+                                {icon}
+                                <div>{choice}</div>
+                            </Button>
+                        )
+                    })
                 }
+                <Button
+                    data-category="random"
+                    onClick={props.randomClick}>
+                    {icons['random']()}
+                    <div>Surprise Me!</div>
+                </Button>
             </Wrapper>
         )
         :

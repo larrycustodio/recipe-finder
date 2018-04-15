@@ -22,7 +22,7 @@ class App extends Component {
     super(props);
     this.initialState = {
       timeOfDay: '',
-      categories: ['beef', 'chicken', 'pasta', 'pork', 'seafood', 'vegetarian', 'vegan', 'random'],
+      categories: ['beef', 'chicken', 'pasta', 'pork', 'seafood', 'vegetarian', 'vegan'],
       isSearched: false,
       isSearchError: null,
       isRecipeSelected: false,
@@ -38,8 +38,10 @@ class App extends Component {
     this.searchStringChangeHandler = this.searchStringChangeHandler.bind(this);
     this.submitHandler = this.submitHandler.bind(this);
     this.searchRecipes = this.searchRecipes.bind(this);
+    this.searchRandomRecipe = this.searchRandomRecipe.bind(this);
     this.getRecipeInstructions = this.getRecipeInstructions.bind(this);
     this.categoryClickHandler = this.categoryClickHandler.bind(this);
+    this.catRandomClickHandler = this.catRandomClickHandler.bind(this);
     this.denyRecipeHandler = this.denyRecipeHandler.bind(this);
     this.acceptRecipeHandler = this.acceptRecipeHandler.bind(this);
 
@@ -80,8 +82,17 @@ class App extends Component {
         selectedCategory: category
       });
       // Set async request for recipe search
-      window.setTimeout(this.searchRecipes, 1000);
+      window.setTimeout(this.searchRecipes, 1750);
     }
+  }
+  catRandomClickHandler(e){
+    e.stopPropagation();
+    this.setState({
+      ...this.state,
+      isSearched: true,
+      selectedCategory: 'random'
+    });
+    window.setTimeout(this.searchRandomRecipe, 1750);
   }
   // Async search recipes 
   searchRecipes() {
@@ -115,6 +126,36 @@ class App extends Component {
         })
       })
   };
+  searchRandomRecipe(){
+    fetch(`https://www.themealdb.com/api/json/v1/1/random.php`)
+      .then(response => response.json())
+      .then(data => {
+        // Set state based on API response
+        const { meals } = data;
+        if (!meals.length) {
+          // No results found
+          this.setState({
+            ...this.state,
+            isSearchError: false,
+            results: []
+          });
+        } else {
+          // Return search state results
+          this.setState({
+            ...this.state,
+            isSearchError: false,
+            results: [...meals]
+          })
+        }
+      }).catch(err => {
+        // Error handling
+        this.setState({
+          ...this.state,
+          isSearchError: true,
+          results: []
+        })
+      });
+  }
   // Async get recipe instructions
   getRecipeInstructions() {
     const { activeResult, results } = this.state;
@@ -185,6 +226,7 @@ class App extends Component {
           recipes={this.state.results}
           isError={this.state.isSearchError}
           activeResult={this.state.activeResult}
+          randomClick={this.catRandomClickHandler}
           onDeny={this.denyRecipeHandler}
           onAccept={this.acceptRecipeHandler}
         />
@@ -195,7 +237,8 @@ class App extends Component {
         <CategoryPicker
           isSelected={this.state.isSearched}
           choices={this.state.categories}
-          categoryClick={this.categoryClickHandler} />
+          categoryClick={this.categoryClickHandler}
+          randomClick={this.catRandomClickHandler} />
         {/* <Form
           timeOfDay={this.state.timeOfDay}
           onSearchStringChange={this.searchStringChangeHandler}

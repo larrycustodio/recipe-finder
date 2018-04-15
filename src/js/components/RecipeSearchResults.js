@@ -138,6 +138,7 @@ const Loader = styled.div`
 const RecipeView = props => {
     const { strMeal, strMealThumb } = props.recipe;
     const { isRecipeSelected } = props;
+
     return (
         <RecipeViewWrapper>
             {
@@ -179,11 +180,13 @@ const ErrorMessage = props => {
 };
 
 const RecipeSearchResults = props => {
+    const onDeny = props.selectedCategory == 'random'? props.randomClick : props.onDeny;
+
     return props.isCategorySelected ?
         props.recipes.length ?
             <RecipeView
                 isRecipeSelected={props.isRecipeSelected}
-                deny={props.onDeny}
+                deny={onDeny}
                 accept={props.onAccept}
                 recipe={props.recipes[props.activeResult]} />
             :
