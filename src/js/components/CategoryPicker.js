@@ -22,7 +22,7 @@ const Wrapper = styled.div`
 `;
 
 const Button = styled.div`
-    animation: ${revealUp} 750ms ease 1000ms forwards;
+    animation: ${revealUp} 750ms ease 500ms forwards;
     align-items: flex-end;
     border-radius: 5px;
     color: rgb(154, 108, 62);
