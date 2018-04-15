@@ -233,12 +233,14 @@ class App extends Component {
         <RecipeInstructions
           isRecipeSelected={this.state.isRecipeSelected}
           instructions={this.state.recipe}
+          reset={this.resetState}
         />
         <CategoryPicker
           isSelected={this.state.isSearched}
           choices={this.state.categories}
           categoryClick={this.categoryClickHandler}
-          randomClick={this.catRandomClickHandler} />
+          randomClick={this.catRandomClickHandler} 
+        />
         {/* <Form
           timeOfDay={this.state.timeOfDay}
           onSearchStringChange={this.searchStringChangeHandler}
