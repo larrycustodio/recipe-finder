@@ -9,12 +9,6 @@ const htmlPlugin = new HtmlWebpackPlugin({
     filename: './index.html'
 })
 
-// Extract the stylesheets into a dedicated file
-const cssExtractPlugin = new MiniCssExtractPlugin({
-    filename: '[name].css',
-    chunkFilename: "[id].css"
-});
-
 // Webpack config
 module.exports = {
     context: path.join(__dirname, 'src'),
@@ -30,26 +24,22 @@ module.exports = {
         extensions: ['.js', '.jsx']
     },
 
+    output: {
+        publicPath: '/',
+        path: path.resolve(__dirname, './dist'),
+    },
+
     module: {
         rules: [
             {
                 test: /\.jsx?$/,
                 exclude: [/node_modules/, /server/],
                 loader: 'babel-loader'
-            },
-            {
-                test: /\.scss$/,
-                exclude: [/node_modules/],
-                use: [
-                    MiniCssExtractPlugin.loader,
-                    { loader: 'css-loader' },
-                    { loader: 'sass-loader', options: {} },
-                ]
             }
         ]
     },
     //disable cache in watch mode
     cache: false,
-    
-    plugins: [htmlPlugin, cssExtractPlugin]
+
+    plugins: [htmlPlugin]
 }
