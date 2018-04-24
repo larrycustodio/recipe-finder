@@ -40,7 +40,7 @@ const Tagline = styled.p`
     font-size: 0.85em;
     position: relative;
     line-height: 1.5em;
-    margin: 0.55em 0;
+    margin: 0.55em 0 1.5em;
     padding: 0.25em 0;
     text-transform: uppercase;
     text-align: center;

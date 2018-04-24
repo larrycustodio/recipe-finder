@@ -85,7 +85,7 @@ class App extends Component {
       window.setTimeout(this.searchRecipes, 1750);
     }
   }
-  catRandomClickHandler(e){
+  catRandomClickHandler(e) {
     e.stopPropagation();
     this.setState({
       ...this.state,
@@ -126,7 +126,7 @@ class App extends Component {
         })
       })
   };
-  searchRandomRecipe(){
+  searchRandomRecipe() {
     fetch(`https://www.themealdb.com/api/json/v1/1/random.php`)
       .then(response => response.json())
       .then(data => {
@@ -189,17 +189,21 @@ class App extends Component {
   denyRecipeHandler() {
     const { results, activeResult } = this.state;
     if (activeResult < results.length - 1) {
+      const swipeContainer = document.querySelector('.swipeable');
       this.setState({
         ...this.state,
         activeResult: this.state.activeResult + 1
       })
+      swipeContainer.classList.add('swipe--rejected');
     } else {
       console.log('limit reached!');
     }
   }
   // Swipe right/accept recipe in view
   acceptRecipeHandler() {
-    this.getRecipeInstructions();
+    setTimeout(this.getRecipeInstructions(), 1500);
+    const swipeContainer = document.querySelector('.swipeable');
+    swipeContainer.classList.add('swipe--accepted');
   }
 
   // Form submission handler
@@ -239,7 +243,7 @@ class App extends Component {
           isSelected={this.state.isSearched}
           choices={this.state.categories}
           categoryClick={this.categoryClickHandler}
-          randomClick={this.catRandomClickHandler} 
+          randomClick={this.catRandomClickHandler}
         />
         {/* <Form
           timeOfDay={this.state.timeOfDay}

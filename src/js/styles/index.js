@@ -63,8 +63,37 @@ const boilUp3 = keyframes`
     }
 `;
 
+const fadeOutLeft = keyframes`
+    0% {
+        opacity: 1;
+        transform: translate(0,0);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-10%,0);
+    }
+`;
+
+const zoomHighlight = keyframes`
+0% {
+    opacity: 0.9;
+    transform: scale(0.9);
+}
+30% {
+    opacity: 0.95;
+    transform: scale(1.2);
+}
+100% {
+    opacity: 1;
+    transform: scale(1);
+}
+`;
 // Global CSS
 injectGlobal`
+  * {
+   box-sizing: border-box;
+  }
+  
   body {
     margin: 0;
     height: 100%;
@@ -89,5 +118,14 @@ injectGlobal`
   .boil-3 {
     animation: ${boilUp3} 650ms linear infinite;
     transform-origin: center;  
+  }
+  .swipeable {
+      transition: all 450ms ease;
+  }
+  .swipe--rejected {
+    animation: 500ms ${fadeOutLeft} ease forwards;
+  }
+  .swipe--accepted {
+    animation: 1250ms ${zoomHighlight} ease forwards;
   }
 `;

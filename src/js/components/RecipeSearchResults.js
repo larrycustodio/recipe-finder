@@ -135,6 +135,7 @@ const Loader = styled.div`
         width: auto;
     }
 `
+
 const RecipeView = props => {
     const { strMeal, strMealThumb } = props.recipe;
     const { isRecipeSelected } = props;
@@ -159,7 +160,10 @@ const RecipeView = props => {
                     <Swipeable
                         onSwipeLeft={props.deny}
                         onSwipeRight={props.accept}>
-                        <img src={strMealThumb} />
+                        <img
+                        className="swipeable"
+                        src={strMealThumb} 
+                        />
                     </Swipeable>
                 </RecipeImageContainer>
                 {!isRecipeSelected ?
