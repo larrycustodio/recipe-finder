@@ -75,18 +75,11 @@ const fadeOutLeft = keyframes`
 `;
 
 const zoomHighlight = keyframes`
-0% {
-    opacity: 0.9;
-    transform: scale(0.9);
-}
-30% {
-    opacity: 0.95;
-    transform: scale(1.2);
-}
-100% {
-    opacity: 1;
-    transform: scale(1);
-}
+0% { transform: rotate(0deg); }
+80% { transform: rotate(0deg); }
+85% { transform: rotate(5deg); }
+95% { transform: rotate(-5deg); }
+100% { transform: rotate(0deg); }
 `;
 // Global CSS
 injectGlobal`
